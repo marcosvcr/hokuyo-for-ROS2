@@ -1,7 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
-#include "urg_sensor.h"
-#include "urg_utils.h"
+#include "urg_c/urg_sensor.h"
+#include "urg_c/urg_utils.h"
 #include <vector>
 
 class HokuyoNode : public rclcpp::Node {
@@ -29,7 +29,7 @@ public:
 private:
     void publish_scan() {
         std::vector<long> data(max_data_size_);
-        int n = urg_get_distance(&urg_, &data[0], nullptr);
+        int n = urg_get_distance(&urg_, &data[0], nullptr, nullptr);
 
         if (n <= 0) {
             RCLCPP_ERROR(this->get_logger(), "Failed to get scan data.");
@@ -65,4 +65,3 @@ int main(int argc, char *argv[]) {
     rclcpp::shutdown();
     return 0;
 }
-
