@@ -1,4 +1,4 @@
-# hokuyo-for-ROS2
+# hokuyo_node2
 This package is to connect hokuyo via USB
 
 
